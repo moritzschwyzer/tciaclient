@@ -13,7 +13,7 @@
 > This Python package uses the official TCIA REST API to enable downloads from www.cancerimagingarchive.net from within Python scripts and Jupyter Notebooks.
 
 
-The documentation can be found at https://moritzschwyzer.github.io/tciaclient/.
+The documentation can be found at https://moritzschwyzer.github.io/tciaclient/. This PyPI/Conda package is based on source code of the TCIA-API-SDK https://github.com/TCIA-Community/TCIA-API-SDK.
 
 ## Install
 

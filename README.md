@@ -84,3 +84,6 @@ for i, s in enumerate(series):
 </div>
 
 </div>
+
+## TCIA Data Usage Policies and Restrictions
+Please https://wiki.cancerimagingarchive.net/display/Public/Data+Usage+Policies+and+Restrictions

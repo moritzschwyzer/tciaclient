@@ -110,7 +110,7 @@ summary: "This Python package uses the official TCIA REST API to enable download
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Step 4: Get the series information of the chosen collection.</p>
+<p>Step 4: Get the series information of the chosen collection. In this example, we specify that we only want series that are CT scans.</p>
 
 </div>
 </div>
@@ -120,7 +120,7 @@ summary: "This Python package uses the official TCIA REST API to enable download
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">series</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="n">collection</span><span class="o">=</span><span class="n">collection_name</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">series</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="n">collection</span><span class="o">=</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;CT&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -130,7 +130,7 @@ summary: "This Python package uses the official TCIA REST API to enable download
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Step 5: Download the dataset to the specified path. In this example, we specify that we only want to download CT scans.</p>
+<p>Step 5: Download the dataset to the specified path.</p>
 
 </div>
 </div>
@@ -142,10 +142,9 @@ summary: "This Python package uses the official TCIA REST API to enable download
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">download_path</span> <span class="o">=</span> <span class="s2">&quot;./tcia-downloads&quot;</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="s2">&quot;Modality&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;CT&quot;</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-        <span class="n">tc</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">seriesInstanceUid</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="s2">&quot;SeriesInstanceUID&quot;</span><span class="p">],</span>
-             <span class="n">downloadPath</span> <span class="o">=</span> <span class="n">download_path</span><span class="p">,</span> <span class="n">zipFileName</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;-&quot;</span><span class="o">+</span><span class="n">collection_name</span><span class="o">+</span><span class="s2">&quot;.zip&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">tc</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">seriesInstanceUid</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="s2">&quot;SeriesInstanceUID&quot;</span><span class="p">],</span>
+        <span class="n">downloadPath</span> <span class="o">=</span> <span class="n">download_path</span><span class="p">,</span> <span class="n">zipFileName</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;-&quot;</span><span class="o">+</span><span class="n">collection_name</span><span class="o">+</span><span class="s2">&quot;.zip&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>

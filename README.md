@@ -57,29 +57,28 @@ collection_name = "NSCLC-Radiomics"
 
 </div>
 
-Step 4: Get the series information of the chosen collection.
+Step 4: Get the series information of the chosen collection. In this example, we specify that we only want series that are CT scans.
 <div class="codecell" markdown="1">
 <div class="input_area" markdown="1">
 
 ```python
-series = tc.get_series(collection=collection_name)
+series = tc.get_series(collection=collection_name, modality="CT")
 ```
 
 </div>
 
 </div>
 
-Step 5: Download the dataset to the specified path. In this example, we specify that we only want to download CT scans.
+Step 5: Download the dataset to the specified path.
 <div class="codecell" markdown="1">
 <div class="input_area" markdown="1">
 
 ```python
 download_path = "./tcia-downloads"
 for i, s in enumerate(series):
-    if s["Modality"] == "CT":
-        print(i)
-        tc.get_image(seriesInstanceUid = s["SeriesInstanceUID"],
-             downloadPath = download_path, zipFileName = str(i).zfill(3)+"-"+collection_name+".zip")
+    print(i)
+    tc.get_image(seriesInstanceUid = s["SeriesInstanceUID"],
+        downloadPath = download_path, zipFileName = str(i).zfill(3)+"-"+collection_name+".zip")
 ```
 
 </div>

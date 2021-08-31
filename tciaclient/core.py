@@ -8,6 +8,7 @@ import urllib.request, urllib.error, urllib.parse
 import urllib.request, urllib.parse, urllib.error
 import sys
 import math
+import json
 
 # Cell
 class TCIAClient:
@@ -33,10 +34,14 @@ class TCIAClient:
         resp = urllib.request.urlopen(request)
         return resp
 
+    def jsonify(self, resp):
+        return json.loads(resp.read())
+
     def get_modality_values(self,collection = None , bodyPartExamined = None , modality = None , outputFormat = "json" ):
         serviceUrl = self.baseUrl + "/query/" + self.GET_MODALITY_VALUES
         queryParameters = {"Collection" : collection , "BodyPartExamined" : bodyPartExamined , "Modality" : modality , "format" : outputFormat }
         resp = self.execute(serviceUrl , queryParameters)
+        if outputFormat == "json" : resp = self.jsonify(resp)
         return resp
 
     def get_series_size(self, SeriesInstanceUID = None, outputFormat = "json"):
@@ -44,6 +49,7 @@ class TCIAClient:
         queryParameters = {"SeriesInstanceUID" : SeriesInstanceUID, "format" :
                            outputFormat}
         resp = self.execute(serviceUrl, queryParameters)
+        if outputFormat == "json" : resp = self.jsonify(resp)
         return resp
 
     def contents_by_name(self, name = None):
@@ -57,36 +63,42 @@ class TCIAClient:
         serviceUrl = self.baseUrl + "/query/" + self.GET_MANUFACTURER_VALUES
         queryParameters = {"Collection" : collection , "BodyPartExamined" : bodyPartExamined , "Modality" : modality , "format" : outputFormat }
         resp = self.execute(serviceUrl , queryParameters)
+        if outputFormat == "json" : resp = self.jsonify(resp)
         return resp
 
     def get_collection_values(self,outputFormat = "json" ):
         serviceUrl = self.baseUrl + "/query/" + self.GET_COLLECTION_VALUES
         queryParameters = { "format" : outputFormat }
         resp = self.execute(serviceUrl , queryParameters)
+        if outputFormat == "json" : resp = self.jsonify(resp)
         return resp
 
     def get_body_part_values(self,collection = None , bodyPartExamined = None , modality = None , outputFormat = "json" ):
         serviceUrl = self.baseUrl + "/query/" + self.GET_BODY_PART_VALUES
         queryParameters = {"Collection" : collection , "BodyPartExamined" : bodyPartExamined , "Modality" : modality , "format" : outputFormat }
         resp = self.execute(serviceUrl , queryParameters)
+        if outputFormat == "json" : resp = self.jsonify(resp)
         return resp
 
     def get_patient_study(self,collection = None , patientId = None , studyInstanceUid = None , outputFormat = "json" ):
         serviceUrl = self.baseUrl + "/query/" + self.GET_PATIENT_STUDY
         queryParameters = {"Collection" : collection , "PatientID" : patientId , "StudyInstanceUID" : studyInstanceUid , "format" : outputFormat }
         resp = self.execute(serviceUrl , queryParameters)
+        if outputFormat == "json" : resp = self.jsonify(resp)
         return resp
 
     def get_series(self, collection = None , modality = None , studyInstanceUid = None , outputFormat = "json" ):
         serviceUrl = self.baseUrl + "/query/" + self.GET_SERIES
         queryParameters = {"Collection" : collection , "StudyInstanceUID" : studyInstanceUid , "Modality" : modality , "format" : outputFormat }
         resp = self.execute(serviceUrl , queryParameters)
+        if outputFormat == "json" : resp = self.jsonify(resp)
         return resp
 
     def get_patient(self,collection = None , outputFormat = "json" ):
         serviceUrl = self.baseUrl + "/query/" + self.GET_PATIENT
         queryParameters = {"Collection" : collection , "format" : outputFormat }
         resp = self.execute(serviceUrl , queryParameters)
+        if outputFormat == "json" : resp = self.jsonify(resp)
         return resp
 
     def get_image(self , seriesInstanceUid , downloadPath, zipFileName):

@@ -90,7 +90,7 @@ summary: "This Python package uses the official TCIA REST API to enable download
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Step 3: Download DICOM series in zip format.</p>
+<p>Step 3: Choose a collection name from <a href="https://wiki.cancerimagingarchive.net/display/Public/Collections">https://wiki.cancerimagingarchive.net/display/Public/Collections</a>.</p>
 
 </div>
 </div>
@@ -100,7 +100,255 @@ summary: "This Python package uses the official TCIA REST API to enable download
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tc</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">seriesInstanceUid</span> <span class="o">=</span><span class="s2">&quot;1.3.6.1.4.1.14519.5.2.1.7695.4001.306204232344341694648035234440&quot;</span><span class="p">,</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">collection_name</span> <span class="o">=</span> <span class="s2">&quot;NSCLC-Radiomics&quot;</span>
+<span class="n">collection</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">get_patient</span><span class="p">(</span><span class="n">collection_name</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">collection_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">collection</span><span class="p">);</span> <span class="n">collection_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PatientID</th>
+      <th>PatientName</th>
+      <th>PatientSex</th>
+      <th>Collection</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>LUNG1-001</td>
+      <td>LUNG1-001</td>
+      <td>M</td>
+      <td>NSCLC-Radiomics</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>LUNG1-007</td>
+      <td>LUNG1-007</td>
+      <td>M</td>
+      <td>NSCLC-Radiomics</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>LUNG1-029</td>
+      <td>LUNG1-029</td>
+      <td>F</td>
+      <td>NSCLC-Radiomics</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>LUNG1-036</td>
+      <td>LUNG1-036</td>
+      <td>F</td>
+      <td>NSCLC-Radiomics</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>LUNG1-056</td>
+      <td>LUNG1-056</td>
+      <td>F</td>
+      <td>NSCLC-Radiomics</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">collection</span><span class="p">:</span>
+    <span class="n">c</span><span class="p">[</span><span class="s2">&quot;PatientID&quot;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">studies</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">get_patient_study</span><span class="p">(</span><span class="n">collection</span><span class="o">=</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">patientId</span><span class="o">=</span><span class="n">collection</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;PatientID&quot;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">studies</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;Collection&#39;: &#39;NSCLC-Radiomics&#39;,
+  &#39;PatientID&#39;: &#39;LUNG1-001&#39;,
+  &#39;PatientName&#39;: &#39;LUNG1-001&#39;,
+  &#39;PatientSex&#39;: &#39;M&#39;,
+  &#39;StudyInstanceUID&#39;: &#39;1.3.6.1.4.1.32722.99.99.239341353911714368772597187099978969331&#39;,
+  &#39;StudyDate&#39;: &#39;2008-09-18&#39;,
+  &#39;PatientAge&#39;: &#39;083Y&#39;,
+  &#39;SeriesCount&#39;: 3}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">series</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="n">studyInstanceUid</span><span class="o">=</span><span class="n">studies</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;StudyInstanceUID&quot;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">series</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;PatientID&#39;: &#39;LUNG1-001&#39;,
+  &#39;StudyInstanceUID&#39;: &#39;1.3.6.1.4.1.32722.99.99.239341353911714368772597187099978969331&#39;,
+  &#39;SeriesInstanceUID&#39;: &#39;1.3.6.1.4.1.32722.99.99.298991776521342375010861296712563382046&#39;,
+  &#39;Modality&#39;: &#39;CT&#39;,
+  &#39;ProtocolName&#39;: &#39;RCCTPET_THORAX_CONTRAST_dag0&#39;,
+  &#39;SeriesDate&#39;: &#39;2008-09-18&#39;,
+  &#39;BodyPartExamined&#39;: &#39;LUNG&#39;,
+  &#39;SeriesNumber&#39;: &#39;0.000000&#39;,
+  &#39;Collection&#39;: &#39;NSCLC-Radiomics&#39;,
+  &#39;Manufacturer&#39;: &#39;SIEMENS&#39;,
+  &#39;ManufacturerModelName&#39;: &#39;Biograph 40&#39;,
+  &#39;SoftwareVersions&#39;: &#39;syngo CT 2006A&#39;,
+  &#39;Visibility&#39;: &#39;1&#39;,
+  &#39;ImageCount&#39;: 134},
+ {&#39;PatientID&#39;: &#39;LUNG1-001&#39;,
+  &#39;StudyInstanceUID&#39;: &#39;1.3.6.1.4.1.32722.99.99.239341353911714368772597187099978969331&#39;,
+  &#39;SeriesInstanceUID&#39;: &#39;1.2.276.0.7230010.3.1.3.2323910823.20524.1597260509.554&#39;,
+  &#39;Modality&#39;: &#39;SEG&#39;,
+  &#39;SeriesDate&#39;: &#39;2020-08-12&#39;,
+  &#39;SeriesDescription&#39;: &#39;Segmentation&#39;,
+  &#39;BodyPartExamined&#39;: &#39;LUNG&#39;,
+  &#39;SeriesNumber&#39;: &#39;300.000000&#39;,
+  &#39;Collection&#39;: &#39;NSCLC-Radiomics&#39;,
+  &#39;Manufacturer&#39;: &#39;QIICR&#39;,
+  &#39;ManufacturerModelName&#39;: &#39;https://github.com/qiicr/dcmqi.git&#39;,
+  &#39;SoftwareVersions&#39;: &#39;3efde87&#39;,
+  &#39;Visibility&#39;: &#39;1&#39;,
+  &#39;ImageCount&#39;: 1},
+ {&#39;PatientID&#39;: &#39;LUNG1-001&#39;,
+  &#39;StudyInstanceUID&#39;: &#39;1.3.6.1.4.1.32722.99.99.239341353911714368772597187099978969331&#39;,
+  &#39;SeriesInstanceUID&#39;: &#39;1.3.6.1.4.1.32722.99.99.227938121586608072508444156170535578236&#39;,
+  &#39;Modality&#39;: &#39;RTSTRUCT&#39;,
+  &#39;SeriesNumber&#39;: &#39;3.000000&#39;,
+  &#39;Collection&#39;: &#39;NSCLC-Radiomics&#39;,
+  &#39;Manufacturer&#39;: &#39;Varian Medical Systems&#39;,
+  &#39;ManufacturerModelName&#39;: &#39;ARIA RadOnc&#39;,
+  &#39;SoftwareVersions&#39;: &#39;15.5.11&#39;,
+  &#39;Visibility&#39;: &#39;1&#39;,
+  &#39;ImageCount&#39;: 1}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tc</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">seriesInstanceUid</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;SeriesInstanceUID&quot;</span><span class="p">],</span>
              <span class="n">downloadPath</span>  <span class="o">=</span><span class="s2">&quot;./&quot;</span><span class="p">,</span> <span class="n">zipFileName</span> <span class="o">=</span><span class="s2">&quot;images.zip&quot;</span><span class="p">)</span>
 </pre></div>
 

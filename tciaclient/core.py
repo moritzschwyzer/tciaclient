@@ -88,6 +88,7 @@ class TCIAClient:
         return resp
 
     def get_series(self, collection = None , modality = None , studyInstanceUid = None , outputFormat = "json" ):
+        "Search for series by collection name and/or study name and/or modality."
         serviceUrl = self.baseUrl + "/query/" + self.GET_SERIES
         queryParameters = {"Collection" : collection , "StudyInstanceUID" : studyInstanceUid , "Modality" : modality , "format" : outputFormat }
         resp = self.execute(serviceUrl , queryParameters)
@@ -102,7 +103,7 @@ class TCIAClient:
         return resp
 
     def get_image(self , seriesInstanceUid , downloadPath, zipFileName):
-        "Get a set of images as a zip file"
+        "Get a set of images as a zip file."
         serviceUrl = self.baseUrl + "/query/" + self.GET_IMAGE
         queryParameters = { "SeriesInstanceUID" : seriesInstanceUid }
         os.umask(0o002)

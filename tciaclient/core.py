@@ -107,6 +107,8 @@ class TCIAClient:
         queryParameters = { "SeriesInstanceUID" : seriesInstanceUid }
         os.umask(0o002)
         try:
+            if not os.path.exists(downloadPath):
+                os.makedirs(downloadPath)
             file = os.path.join(downloadPath, zipFileName)
             resp = self.execute( serviceUrl , queryParameters)
             downloaded = 0

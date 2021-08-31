@@ -2,7 +2,7 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"TCIAClient": "00_tciaclient.ipynb"}
+index = {"TCIAClient": "00_core.ipynb"}
 
 modules = ["core.py"]
 

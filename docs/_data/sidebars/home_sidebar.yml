@@ -11,7 +11,7 @@ entries:
       url: /
     - output: web,pdf
       title: tciaclient
-      url: /tciaclient
+      url: /core
     output: web
     title: tciaclient
   output: web

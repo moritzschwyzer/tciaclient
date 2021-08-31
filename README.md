@@ -21,12 +21,37 @@ The documentation can be found at https://moritzschwyzer.github.io/tciaclient/.
 
 ## How to use
 
-Fill me in please! Don't forget code examples:
+Step 1: Import the `TCIAClient` from the `tciaclient.core` package.
 <div class="codecell" markdown="1">
 <div class="input_area" markdown="1">
 
 ```python
-1+1
+from tciaclient.core import TCIAClient
+```
+
+</div>
+
+</div>
+
+Step 2: Create an instance of the `TCIAClient`.
+<div class="codecell" markdown="1">
+<div class="input_area" markdown="1">
+
+```python
+tc = TCIAClient()
+```
+
+</div>
+
+</div>
+
+Step 3: Download DICOM series in zip format.
+<div class="codecell" markdown="1">
+<div class="input_area" markdown="1">
+
+```python
+tc.get_image(seriesInstanceUid ="1.3.6.1.4.1.14519.5.2.1.7695.4001.306204232344341694648035234440",
+             downloadPath  ="./", zipFileName ="images.zip")
 ```
 
 </div>
@@ -35,7 +60,7 @@ Fill me in please! Don't forget code examples:
 
 
 
-    2
+    True
 
 
 

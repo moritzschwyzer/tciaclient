@@ -83,43 +83,5 @@ for i, s in enumerate(series):
 ```
 
 </div>
-<div class="output_area" markdown="1">
-
-    0
-
-
-</div>
-
-</div>
-<div class="codecell" markdown="1">
-<div class="input_area" markdown="1">
-
-```python
-tc.get_image(seriesInstanceUid = z[0]["SeriesInstanceUID"],
-             downloadPath  ="./", zipFileName ="images.zip")
-```
-
-</div>
-
-</div>
-<div class="codecell" markdown="1">
-<div class="input_area" markdown="1">
-
-```python
-tc.get_image(seriesInstanceUid = z[0]["SeriesInstanceUID"],
-             downloadPath  ="./", zipFileName ="images.zip")
-```
-
-</div>
-<div class="output_area" markdown="1">
-
-
-
-
-    True
-
-
-
-</div>
 
 </div>

@@ -10,10 +10,10 @@
 
 # TCIA (The Cancer Imaging Archive) Download Client for Python
 
-> This Python package uses the official TCIA REST API to make downloads from www.cancerimagingarchive.net easier.
+> This Python package uses the official TCIA REST API to enable downloads from www.cancerimagingarchive.net from within Python scripts and Jupyter Notebooks.
 
 
-This file will become your README and also the index of your documentation.
+The documentation can be found at https://moritzschwyzer.github.io/tciaclient/.
 
 ## Install
 
